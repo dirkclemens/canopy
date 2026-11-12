@@ -1,17 +1,20 @@
 import SwiftUI
-import Playgrounds
 
+/// Switches between the connection setup and the topic browser.
 struct ContentView: View {
+    @Environment(MQTTClientService.self) private var service
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if service.profile != nil && service.state != .disconnected {
+            TopicBrowserView()
+        } else {
+            ConnectionManagerView()
+        }
     }
 }
 
 #Preview {
     ContentView()
-}
-
-#Playground {
-    _ = 1 + 2
+        .environment(ConnectionStore())
+        .environment(MQTTClientService())
 }
