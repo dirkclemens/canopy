@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+ <rect width="1024" height="1024" opacity="0"/>
+ <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="34">
+  <!-- broadcast arcs above the root node (centre 512,360) -->
+  <path d="M 427.1 275.1 A 120 120 0 0 1 596.9 275.1" opacity="0.9"/>
+  <path d="M 384.7 232.7 A 180 180 0 0 1 639.3 232.7" opacity="0.6"/>
+  <path d="M 342.3 190.3 A 240 240 0 0 1 681.7 190.3" opacity="0.35"/>
+ </g>
+</svg>

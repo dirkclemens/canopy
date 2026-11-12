@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+ <rect width="1024" height="1024" opacity="0"/>
+ <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="36">
+  <!-- connectors: root -> bar -> three children -->
+  <path d="M 512 420 L 512 540"/>
+  <path d="M 292 680 L 292 590 Q 292 540 342 540 L 682 540 Q 732 540 732 590 L 732 680"/>
+  <path d="M 512 540 L 512 680"/>
+ </g>
+</svg>

@@ -1,9 +1,11 @@
-# mqttX
+# Canopy
 
 Ein nativer MQTT-Client für macOS, geschrieben in Swift und SwiftUI.
-mqttX verbindet sich mit einem MQTT-Broker (z. B. Mosquitto), sortiert alle empfangenen
+Canopy verbindet sich mit einem MQTT-Broker (z. B. Mosquitto), sortiert alle empfangenen
 Nachrichten anhand ihrer Topic-Struktur in einen Baum und zeigt die Payload in
 verschiedenen Formaten an.
+
+![Canopy mit verbundenem Broker: Topic-Baum links, JSON-Payload und Publish-Bereich rechts](screenshot.png)
 
 ## Funktionen
 
@@ -51,14 +53,14 @@ Abhängigkeit (wird von Xcode automatisch per Swift Package Manager geladen):
 
 ## Bauen und starten
 
-1. `mqttx.xcodeproj` in Xcode öffnen
+1. `Canopy.xcodeproj` in Xcode öffnen
 2. Unter *Signing & Capabilities* ggf. das eigene Team auswählen
-3. Schema **mqttx** wählen und mit ⌘R starten
+3. Schema **Canopy** wählen und mit ⌘R starten
 
 Oder auf der Kommandozeile:
 
 ```sh
-xcodebuild -project mqttx.xcodeproj -scheme mqttx -configuration Release build
+xcodebuild -project Canopy.xcodeproj -scheme Canopy -configuration Release build
 ```
 
 ### Schnelltest mit einem lokalen Broker
@@ -70,46 +72,47 @@ mosquitto_pub -t home/livingroom/temp -m 21.5 -r
 mosquitto_pub -t home/sensor -m '{"temp": 20.1, "hum": 55}'
 ```
 
-In mqttX eine Verbindung zu `localhost`, Port `1883` anlegen und verbinden.
+In Canopy eine Verbindung zu `localhost`, Port `1883` anlegen und verbinden.
 
 ## Tests
 
 Die Tests verwenden Swift Testing und laufen in Xcode mit ⌘U oder per
 
 ```sh
-xcodebuild -project mqttx.xcodeproj -scheme mqttx -destination 'platform=macOS' test
+xcodebuild -project Canopy.xcodeproj -scheme Canopy -destination 'platform=macOS' test
 ```
 
 Die Integrationstests (MQTT 3.1.1/5, Retained-Nachrichten, TLS, mTLS) brauchen einen
 lokalen Broker und werden sonst übersprungen. Start aus dem Projektverzeichnis:
 
 ```sh
-mosquitto -c mqttxTests/Fixtures/mosquitto-test.conf
+mosquitto -c CanopyTests/Fixtures/mosquitto-test.conf
 ```
 
-Die Test-Zertifikate in `mqttxTests/Fixtures/` sind nur für Tests gedacht. macOS akzeptiert
+Die Test-Zertifikate in `CanopyTests/Fixtures/` sind nur für Tests gedacht. macOS akzeptiert
 Server-Zertifikate nur mit höchstens 398 Tagen Laufzeit; erneuert werden sie mit
-`mqttxTests/Fixtures/make-certs.sh`.
+`CanopyTests/Fixtures/make-certs.sh`.
 
 ## Projektstruktur
 
 ```
-mqttx/
-├── MyApp.swift, ContentView.swift   App-Einstieg, ein Verbindungs-Service pro Fenster
-├── Models/                          Verbindungsprofil, Nachrichten, Topic-Baum,
-│                                    Payload-Formatierung, Highlighting, Diff, Export
-├── Services/                        MQTT-Client (3.1.1/5), Zertifikate, Speicherung, Schlüsselbund
-└── Views/                           Verbindungsverwaltung, Topic-Baum, Details, Diagramm,
-                                     Vergleich, Senden, Split-Views
-mqttxTests/                          Unit- und Integrationstests, Test-Zertifikate
-TASKS.md                             Ablaufplan und offene Punkte
+Canopy/
+├── CanopyApp.swift, ContentView.swift  App-Einstieg, ein Verbindungs-Service pro Fenster
+├── AppIcon.icon/                       App-Icon (Icon Composer, SVG-Ebenen)
+├── Models/                             Verbindungsprofil, Nachrichten, Topic-Baum,
+│                                       Payload-Formatierung, Highlighting, Diff, Export
+├── Services/                           MQTT-Client (3.1.1/5), Zertifikate, Speicherung, Schlüsselbund
+└── Views/                              Verbindungsverwaltung, Topic-Baum, Details, Diagramm,
+                                        Vergleich, Senden, Split-Views
+CanopyTests/                            Unit- und Integrationstests, Test-Zertifikate
+TASKS.md                                Ablaufplan und offene Punkte
 ```
 
 ## Datenspeicherung
 
-- Verbindungen: `~/Library/Containers/de.adcore.mqttX/Data/Library/Application Support/mqttX/connections.json`
+- Verbindungen: `~/Library/Containers/de.adcore.Canopy/Data/Library/Application Support/Canopy/connections.json`
   (ohne Passwörter und private Schlüssel)
-- Passwörter und private Schlüssel: macOS-Schlüsselbund (Dienst `de.adcore.mqttX.connection`)
+- Passwörter und private Schlüssel: macOS-Schlüsselbund (Dienst `de.adcore.Canopy.connection`)
 - Fenster- und Ansichtseinstellungen: UserDefaults der App
 
 ## Einschränkungen
@@ -119,3 +122,8 @@ TASKS.md                             Ablaufplan und offene Punkte
 - Payloads über 200 KB werden ohne Syntax-Highlighting angezeigt
 
 Weitere geplante Punkte stehen in [TASKS.md](TASKS.md).
+
+## Lizenz
+
+[PolyForm Noncommercial License 1.0.0](LICENSE) – Nutzung, Änderung und Weitergabe sind
+für nicht-kommerzielle Zwecke erlaubt. Copyright 2026 Dirk Clemens.

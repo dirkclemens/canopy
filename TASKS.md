@@ -1,4 +1,4 @@
-# mqttX – Ablaufplan
+# Canopy – Ablaufplan
 
 Native macOS-MQTT-Client in Swift/SwiftUI.
 Schwerpunkt der ersten Ausbaustufe: die Grundfunktionen.
@@ -8,12 +8,15 @@ Status: `[x]` erledigt · `[ ]` offen
 ---
 
 ## Phase 0 – Projekt & Infrastruktur
-- [x] Xcode-Projekt `mqttx.xcodeproj` (synchronisierter Ordner `mqttx/`, neue Dateien werden automatisch kompiliert)
+- [x] Xcode-Projekt `Canopy.xcodeproj` (synchronisierter Ordner `Canopy/`, neue Dateien werden automatisch kompiliert)
 - [x] Git-Repository, `.gitignore` (xcuserdata, DerivedData, .DS_Store)
 - [x] MQTT-Bibliothek per Swift Package Manager: [CocoaMQTT](https://github.com/emqx/CocoaMQTT) 2.4.x (TCP, TLS, WebSocket)
 - [x] App Sandbox: ausgehende Netzwerkverbindungen erlaubt
 - [x] Zielplattform auf macOS beschränkt
-- [x] Veraltete `mqttx/Info.plist` entfernt (Info.plist wird generiert)
+- [x] Veraltete `Canopy/Info.plist` entfernt (Info.plist wird generiert)
+- [x] App-Icon im Icon-Composer-Format (`Canopy/AppIcon.icon`, Liquid Glass)
+- [x] Umbenennung in „Canopy“ (Projekt, Target, Bundle-ID `de.adcore.Canopy`)
+- [x] Sitzungsspeicher von CocoaMQTT (`cocomqtt-<Client-ID>.plist`) wird bei Clean Session aufgeräumt
 
 ## Phase 1 – Datenmodell
 - [x] `ConnectionProfile`: Name, Protokoll (`mqtt://`, `mqtts://`, `ws://`, `wss://`), Host, Port, Basispfad (WebSocket), Benutzername, Passwort, Client-ID, Keep-Alive, Clean Session, TLS-Optionen (Zertifikatsprüfung), Topic-Abonnements inkl. QoS
@@ -60,7 +63,7 @@ Status: `[x]` erledigt · `[ ]` offen
 - [x] Retained-Nachrichten löschen per Kontextmenü (einzeln oder ganzer Teilbaum, mit Bestätigung)
 - [x] Mehrere Verbindungen gleichzeitig: jedes Fenster (⌘N) hat eine eigene Verbindung
 - [x] Unit-Tests (Swift Testing) für Topic-Baum, Payload-Formatierung, Highlighting, Diff, Diagrammwerte, Export, Profile
-- [x] Integrationstests gegen lokalen Mosquitto (MQTT 3.1.1/5, Retained, TLS, mTLS) – siehe `mqttxTests/Fixtures/README.md`
+- [x] Integrationstests gegen lokalen Mosquitto (MQTT 3.1.1/5, Retained, TLS, mTLS) – siehe `CanopyTests/Fixtures/README.md`
 - [x] Export von Nachrichten als JSON oder CSV (ganzer Baum über die Toolbar, Teilbaum über das Kontextmenü)
 - [x] Syntax-Highlighting für JSON und XML
 
