@@ -46,10 +46,21 @@ verschiedenen Formaten an.
 ## Voraussetzungen
 
 - macOS 27.2 oder neuer
-- Xcode 27.2 oder neuer
+- zum Selbstbauen: Xcode 27.2 oder neuer
 
 Abhängigkeit (wird von Xcode automatisch per Swift Package Manager geladen):
 [CocoaMQTT](https://github.com/emqx/CocoaMQTT) 2.4.x
+
+## Installation
+
+Eine fertige Version gibt es auf der Seite [Releases](https://github.com/dirkclemens/canopy/releases/latest)
+als `Canopy.dmg` (ad-hoc signiert, nur Apple Silicon). Da sie nicht von Apple notarisiert ist,
+blockiert macOS den ersten Start. Nach dem Kopieren nach `/Applications` das
+Quarantäne-Attribut entfernen:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/Canopy.app
+```
 
 ## Bauen und starten
 
